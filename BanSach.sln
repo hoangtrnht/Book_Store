@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BanSachWeb", "BanSachWeb\BanSachWeb.csproj", "{247DA4C4-04F2-4029-86D0-DE620244FFCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{247DA4C4-04F2-4029-86D0-DE620244FFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{247DA4C4-04F2-4029-86D0-DE620244FFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{247DA4C4-04F2-4029-86D0-DE620244FFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{247DA4C4-04F2-4029-86D0-DE620244FFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BC531AF-2735-4BEE-9276-03859FA81A4F}
+	EndGlobalSection
+EndGlobal
