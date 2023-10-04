@@ -1,5 +1,5 @@
-﻿using BanSachWeb.Data;
-using BanSachWeb.Models;
+﻿using BanSach.DataAcess.Data;
+using BanSach.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BanSachWeb.Controllers
@@ -47,15 +47,15 @@ namespace BanSachWeb.Controllers
             {
                 return NotFound();
             }
-            var categoryfromDb = _db.Categories.Find(id);
-            //var categoryfromDbFrist = _db.Categories.FirstOrDefault(c => c.Id == id);
+            //var categoryfromDb = _db.Categories.Find(id);
+            var categoryfromDbFrist = _db.Categories.FirstOrDefault(c => c.Name == "id");
             //var categoryfromDbFristSingle = _db.Categories.SingleOrDefault(c => c.Id == id);
 
-            if (categoryfromDb == null) 
+            if (categoryfromDbFrist == null) 
             {
                 return NotFound();
             }
-            return View(categoryfromDb);
+            return View(categoryfromDbFrist);
         }
         //post
         [HttpPost]

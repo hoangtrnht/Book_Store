@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BanSachWeb.Models
+namespace BanSach.Models
 {
     public class Category
     {

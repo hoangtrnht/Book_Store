@@ -1,7 +1,7 @@
-﻿using BanSachWeb.Models;
+﻿using BanSach.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BanSachWeb.Data
+namespace BanSach.DataAcess.Data
 {
     public class ApplicationDbContext:DbContext
     {

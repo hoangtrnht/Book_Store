@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BanSachWeb.Migrations
+namespace BanSach.DataAcess.Migrations
 {
     public partial class AddCategoryToDb : Migration
     {

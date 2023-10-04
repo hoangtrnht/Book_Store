@@ -1,4 +1,4 @@
-namespace BanSachWeb.Models
+namespace BanSach.Models
 {
     public class ErrorViewModel
     {
