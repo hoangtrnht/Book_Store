@@ -1,10 +1,10 @@
 ﻿using BanSach.Models;
-using BanSachWeb;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BanSachWeb.Controllers
+namespace BanSachWeb.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

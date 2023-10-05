@@ -13,12 +13,15 @@ namespace BanSach.DataAcess.Repository
     {
         public ICategoryRepository Category { get; private set; }
 
+        public ICoverTypeRepository covertype { get; private set; }
+
         private readonly ApplicationDbContext _db;
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Category = new CategoryRepository(_db);
+            covertype = new CoverTypeRepository(_db);
         }
         public void Save()
         {

@@ -3,8 +3,9 @@ using BanSach.DataAcess.Repository.IRepository;
 using BanSach.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BanSachWeb.Controllers
+namespace BanSachWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -26,7 +27,7 @@ namespace BanSachWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
-            if (obj.Name==obj.DisplayOrder.ToString())
+            if (obj.Name == obj.DisplayOrder.ToString())
             {
                 ModelState.AddModelError("name", "The name must not same displayoder");
             }
@@ -44,7 +45,7 @@ namespace BanSachWeb.Controllers
 
         public IActionResult Edit(int? id)
         {
-            if (id == null || id ==0) 
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
@@ -52,7 +53,7 @@ namespace BanSachWeb.Controllers
             var categoryfromDbFrist = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
             //var categoryfromDbFristSingle = _db.Categories.SingleOrDefault(c => c.Id == id);
 
-            if (categoryfromDbFrist == null) 
+            if (categoryfromDbFrist == null)
             {
                 return NotFound();
             }
@@ -81,7 +82,7 @@ namespace BanSachWeb.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
-            { 
+            {
                 return NotFound();
             }
             var categoryfromDb = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
@@ -95,7 +96,7 @@ namespace BanSachWeb.Controllers
             return View(categoryfromDb);
         }
         //post
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
