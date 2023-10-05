@@ -1,5 +1,7 @@
 using BanSach.DataAcess.Data;
 using Microsoft.EntityFrameworkCore;
+using BanSach.DataAcess.Repository;
+using BanSach.DataAcess.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     options=>options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
         ));
+
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 var app = builder.Build();
 

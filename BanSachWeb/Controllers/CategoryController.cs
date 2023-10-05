@@ -1,4 +1,5 @@
 ﻿using BanSach.DataAcess.Data;
+using BanSach.DataAcess.Repository.IRepository;
 using BanSach.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,14 +7,14 @@ namespace BanSachWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            IEnumerable<Category> objCategoryList = _db.Categories.ToList();
+            IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
             return View(objCategoryList);
         }
         public IActionResult Create()
@@ -31,8 +32,8 @@ namespace BanSachWeb.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                 TempData["Sucess"] = "Category Create Sucessfully";
                 return RedirectToAction("Index");
             }
@@ -48,7 +49,7 @@ namespace BanSachWeb.Controllers
                 return NotFound();
             }
             //var categoryfromDb = _db.Categories.Find(id);
-            var categoryfromDbFrist = _db.Categories.FirstOrDefault(c => c.Name == "id");
+            var categoryfromDbFrist = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
             //var categoryfromDbFristSingle = _db.Categories.SingleOrDefault(c => c.Id == id);
 
             if (categoryfromDbFrist == null) 
@@ -68,8 +69,8 @@ namespace BanSachWeb.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 TempData["Sucess"] = "Category Update Sucessfully";
                 return RedirectToAction("Index");
             }
@@ -80,10 +81,10 @@ namespace BanSachWeb.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
-            {
+            { 
                 return NotFound();
             }
-            var categoryfromDb = _db.Categories.Find(id);
+            var categoryfromDb = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
             //var categoryfromDbFrist = _db.Categories.FirstOrDefault(c => c.Id == id);
             //var categoryfromDbFristSingle = _db.Categories.SingleOrDefault(c => c.Id == id);
 
@@ -98,7 +99,7 @@ namespace BanSachWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.Categories.Find(id);
+            var obj = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
             //var categoryfromDbFrist = _db.Categories.FirstOrDefault(c => c.Id == id);
             //var categoryfromDbFristSingle = _db.Categories.SingleOrDefault(c => c.Id == id);
             if (obj.Name == null)
@@ -107,8 +108,8 @@ namespace BanSachWeb.Controllers
             }
             else
             {
-                _db.Categories.Remove(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Remove(obj);
+                _unitOfWork.Save();
                 TempData["Sucess"] = "Category Dalete Sucessfully";
                 return RedirectToAction("Index");
             }
